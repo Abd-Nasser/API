@@ -1,0 +1,4 @@
+Django
+requests
+Django-rest-framework
+Django-cors-headers
