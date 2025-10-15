@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #extern parti apss
+ "rest_framework",
+    
+    #local apps
     'api',
 ]
 
