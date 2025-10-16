@@ -3,9 +3,9 @@ from .models import Profils
 
 @admin.register(Profils)
 class AdminProfil(admin.ModelAdmin):
-    list_display = ["nom", "prenom", "article", "montant", "status", "create_at"]
+    list_display = ["name", "prenom", "article", "montant", "status", "create_at"]
     list_filter = ["article"]
-    search_fields = ["nom", "prenom", "article", "montant",]
+    search_fields = ["name", "prenom", "article", "montant",]
 
 
 

@@ -12,16 +12,24 @@ def profils_api_view(request, pk=None):
     if request.method == "GET":
         if pk:
             profil = get_object_or_404(Profils, pk=pk)
-            serializerprofil = ProfilsSerializers2(profil)
+            context={'request': request}
+            serializerprofil = ProfilsSerializers1(profil, context=context)
             return Response(serializerprofil.data, status=status.HTTP_200_OK)
             
         all_profils = Profils.objects.all()
-        serializer = ProfilsSerializers2(all_profils, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        context={'request': request}
+        serializer = ProfilsSerializers1(all_profils, many=True, context=context)
+        return Response(serializer.data, status=status.HTTP_200_OK,  )
         
         
     elif request.method == 'POST':
-        serializer = ProfilsSerializers1(data=request.data)
+       
+        ################## serialaize data validation in api side
+        
+        #if name in ["le clown", "indésirable", "far_man"]:
+            #return Response({"message":f"the name <<{name}>> is in the list of ban person "})
+        context={'request': request}
+        serializer = ProfilsSerializers1(data=request.data, context=context)
         if serializer.is_valid():
             serial_save = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
